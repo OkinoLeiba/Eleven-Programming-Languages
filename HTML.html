@@ -1,0 +1,37 @@
+<html>
+    "Hello World!"
+    <script type="text/javascript">
+        var combinArray = [2, 3, 4, 5];
+        var combinResult = 1;
+        for(var i = 0; i < combinArray.length; i++ ) {
+            combinResult *= combinArray[i];
+        }
+        console.log(combinResult);
+        document.write(combinResult)
+    </script>
+
+    <script type="text/javascript">
+        let robotResult;
+        var n = -10;
+        var w = 20;
+        var s = 10;
+        var e = 0;
+        
+        const robotTracker = (n = 0, w = 0, s = 0, e = 0) => {
+        
+        var l = n + (s * -1);
+        var r = w + (e * -1);
+
+        robotResult = [l, r];
+
+        console.log(robotResult);
+        document.write(robotResult);
+        }
+
+        robotTracker(-10, 20, 10)
+    
+
+    </script>
+ 
+    
+</html>
