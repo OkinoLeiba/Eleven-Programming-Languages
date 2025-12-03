@@ -57,9 +57,65 @@ def removeElement(nums: list[int | None], val: int) -> int:
     return op_count
 
 
+# 9. Palindrome Number
+
+# Given an integer x, return true if x is a, and false otherwise.
+
+# Example 1:
+#
+# Input: x = 121
+# Output: true
+# Explanation: 121 reads as 121 from left to right and from right to left.
+#
+# Example 2:
+#
+# Input: x = -121
+# Output: false
+# Explanation: From left to right, it reads -121. From right to left, it be
+#
+# Example 3:
+#
+# Input: x = 10
+# Output: false
+# Explanation: Reads 01 from right to left. Therefore it is not a palindrom
+#
+# Constraints:
+#
+# -231 <= x <= 231 - 1
+#
+#
+# Follow up: Could you solve it without converting the integer to a string?
+
+def isPalindrome(x: int) -> bool:
+    # if x < 0 or x < 99:
+        # return False
+    # return (x % 101) % 10 == 0
+
+    # Half-reverse 
+    if x < 0 or (x % 10 == 0 and x != 0):
+        return False
+    rev = 0
+    while x > rev:
+        rev = rev * 10 + x % 10
+        x //= 10
+    return x == rev or x == rev // 10
+
+    # String method:
+    # s = str(x)
+    # return s == s[::-1]
+
+    # Full reverse:
+    # orig = x
+    # rev_full = 0
+    # while x:
+    #     rev_full = rev_full * 10 + x % 10
+    #     x //= 10
+    # return orig == rev_full
 
 
 
 if '__main__' == __name__:
     nums: list[int | None] = [3, 2, 2, 3, 2, 0 ]
-    removeElement(nums, 3)
+    # removeElement(nums, 3)
+    
+    isPalindrome(121)

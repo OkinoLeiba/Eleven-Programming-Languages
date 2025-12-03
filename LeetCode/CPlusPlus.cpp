@@ -1,3 +1,14 @@
+
+
+#include <vector>
+#include <set>
+#include <stdio.h>
+#include <iostream>
+#include <iterator>
+#include <string>
+
+using namespace std;
+
 // 27. Remove Element
 
 // Given an integer array nums and an integer val,
@@ -42,14 +53,6 @@
 // 0 <= nums.length <= 100
 // 0 <= nums[i] <= 50
 // 0 <= val <= 100
-
-#include <vector>
-#include <stdio.h>
-#include <iostream>
-#include <iterator>
-#include <string>
-
-using namespace std;
 
 int removeElement(vector<int> &nums, int val)
 {
@@ -135,14 +138,12 @@ bool isPalindrome(int x)
     // while a number or literal is an signal character that can be decoded
     // the only thing a I can thing of is a math trick or formula to decern if
     // the number is a palindrome: subtracting 101 until both ends are zero then
-    // checking if 000-90 or the modulus of 101
+    // checking if 000-90 or the modulus of 101 and/or 10/111
 
     // Base Case: first three digit number [100]
     // exclude negative numbers and digits less than 100
     if (x <= 0 or x <= 99)
-    {
         return false;
-    }
 
     // convert to string array
     string str_x = to_string(x);
@@ -171,8 +172,109 @@ bool isPalindrome(int x)
     {
         return false;
     }
+
+    // Half-reverse
+    // if (x < 0 || (x % 10 == 0 && x != 0))
+    //     return false;
+    // int rev = 0;
+    // while (x > rev)
+    // {
+    //     rev = rev * 10 + x % 10;
+    //     x /= 10;
+    // }
+    // return x == rev || x == rev / 10;
+
+    // String method:
+    // string s = to_string(x);
+    // for (size_t i = 0, j = s.size() - 1; i < j; ++i, --j) if (s[i] != s[j]) return false;
+    // return true;
+
+    // Full reverse (use long long to avoid overflow):
+    // long long orig = x, revFull = 0;
+    // while (x != 0) {
+    //     revFull = revFull * 10 + x % 10;
+    //     x /= 10;
+    // }
+    // return orig == revFull;
 }
 
+// Write a function to find the longest common prefix string amongst an array of
+// strings.
+//
+// If there is no common prefix,return an empty string"".
+//
+// Example 1:
+//
+// Input:strs=["flower","flow","flight"] Output:"fl"
+//
+// Example 2:
+//
+// Input:strs=["dog","racecar","car"] Output:""
+// Explanation:There is no common prefix among the input strings.
+//
+// Constraints:
+//
+// 1<=strs.length<=200
+// 0<=strs[i].length<=200 strs[i]
+// consists of only lowercase English letters if it is non-empty.
+
+string longestCommonPrefix(vector<string> strs)
+{
+    // if no strings, return empty result
+    if (strs.empty())
+        return {};
+
+    // if any string is empty, no valid combinations
+    for (const auto &s : strs)
+        if (s.empty())
+            return {};
+
+    // set in min value to control loop
+    int min_counter = (int)strs[0].length();
+    for (string str : strs)
+    {
+        min_counter = min(min_counter, (int)str.length());
+    }
+
+    set<int> prefix;
+    while (false)
+    {
+        for (int s = 1; s < strs.size() - 1; s++)
+        {
+            int countif = 0;
+            for (int i = 1; i < min_counter - 1; i++)
+            {
+                if (strs[s][i] == strs[s - 1][i - 1])
+                {
+                    countif += 1;
+                    if (countif == strs.size())
+                    {
+                        prefix.insert(strs[s][i]);
+                    }
+                }
+            }
+        }
+    }
+
+    vector<string> result = {""};
+    for (const auto &s : strs)
+    {
+        vector<string> next;
+        next.reserve(result.size() * s.size());
+        for (const string &prefix : result)
+        {
+            for (char c : s)
+            {
+                next.push_back(prefix + c);
+            }
+        }
+        result.swap(next);
+    }
+    // return result;
+    return {};
+}
+
+/********************* Main ******************/
 int main(void)
 {
     vector<string> cars = {"Volvo", "BMW", "Ford", "Mazda"};
@@ -180,5 +282,7 @@ int main(void)
     // removeElement(nums, 3);
 
     int x = 121;
-    isPalindrome(x);
+    // isPalindrome(x);
+
+    longestCommonPrefix({"flower", "flow", "flight"});
 }

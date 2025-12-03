@@ -2,6 +2,50 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Java",
+      "request": "launch",
+      "mainClass": "LeetCode.Java",
+      "projectName": "eleven_programming_languages_a5bb6ff9"
+    },
+    {
+      "name": "C# Debug",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "../CodeWars/CSharp/CSharp.csproj"
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${cwd}/${relativeFileDirname}/bin/Debug/net9.0/${fileDirnameBasename}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": ".NET Core Launch (console)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${cwd}/${relativeFileDirname}/bin/Debug/net9.0/${fileDirnameBasename}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
       "type": "perl",
       "request": "launch",
       "name": "Perl-Debug",
@@ -174,6 +218,22 @@
       "externalConsole": false,
       "MIMode": "lldb",
       "preLaunchTask": "C/C++: clang++ build active file"
+    },
+    {
+      "name": "Debug Launch File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "CWD": "${cwd}",
+        "FILE": "${file}",
+        "FILE_DIRNAME": "${fileDirname}",
+        "FILE_BASENAME": "${fileBasename}",
+        "FILE_DIRNAME_BASENAME": "${fileDirnameBasename}",
+        "RELATIVE_FILE": "${relativeFile}",
+        "RELATIVE_FILE_DIRNAME": "${relativeFileDirname}"
+      }
     }
   ]
 }
