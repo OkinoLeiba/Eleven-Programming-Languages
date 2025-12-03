@@ -145,5 +145,8 @@
     "sstream": "cpp",
     "stack": "cpp",
     "variant": "cpp"
+  },
+  "files.watcherExclude": {
+    "**/target": true
   }
 }
