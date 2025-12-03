@@ -134,13 +134,6 @@
       "program": "${file}"
     },
     {
-      "name": "Node: Launch Program",
-      "program": "${file}",
-      "request": "launch",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node"
-    },
-    {
       "name": "TS-Node",
       "type": "node",
       "request": "launch",

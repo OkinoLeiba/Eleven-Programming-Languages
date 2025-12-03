@@ -79,4 +79,48 @@ def split_strings(s: str) -> list[str]:
     # import re
     # return re.findall('..?', s.ljust(len(s)+len(s) % 2, '_'))
 
-split_strings('abcde')
+
+# split_strings('abcde')
+
+# Create  function that returns the sum of the two lowest positive
+# numbers given an array of minimum 4 positive integers.
+# No floats or non - positive integers will be passed.
+# For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+# [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+def sumTwoSmallestNumbers(numbers: list[int]) -> int:  
+    def merge_sort(merge_list: list[int]):
+        if len(merge_list) > 1: 
+            mid = len(merge_list)//2
+            left_half = merge_list[:mid]
+            right_half = merge_list[mid:]
+
+            merge_sort(left_half)
+            merge_sort(right_half)
+
+            i = j = k = 0
+    
+            while i < len(left_half) and j < len(right_half):
+                if left_half[i] < right_half[j]:
+                    merge_list[k] = left_half[i]                
+                    i += 1
+                else:
+                    merge_list[k] = right_half[j]
+                    j += 1
+                k += 1
+
+            while i < len(left_half):
+                merge_list[k] = left_half[i]
+                i += 1
+                k += 1
+    
+            while j < len(right_half):
+                merge_list[k] = right_half[j]
+                j += 1
+                k += 1
+
+    numbers.sort()
+    merge_sort(numbers)
+    return numbers[0] + numbers[1]
+
+sumTwoSmallestNumbers([35,22,90,4,50,20,30,40,1])
