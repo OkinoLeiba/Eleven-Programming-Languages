@@ -46,6 +46,7 @@
 #include <vector>
 #include <stdio.h>
 #include <iostream>
+#include <iterator>
 #include <string>
 
 using namespace std;
@@ -88,20 +89,96 @@ int removeElement(vector<int> &nums, int val)
         {
             // cout << nums[i] << endl;
             // cout << i;
-            nums.erase(i, i);
-            *i = NULL;
+            // nums.erase(i, i);
+            // *i = NULL;
             // cout << i << endl;
             cout << *i << endl;
         }
     }
-    cout << nums.size();
+    // cout << nums.size();
 
-    return nums.size();
+    return count;
+}
+
+// 9. Palindrome Number
+
+// Given an integer x, return true if x is a, and false otherwise.
+
+// Example 1:
+//
+// Input: x = 121
+// Output: true
+// Explanation: 121 reads as 121 from left to right and from right to left.
+//
+// Example 2:
+//
+// Input: x = -121
+// Output: false
+// Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+//
+// Example 3:
+//
+// Input: x = 10
+// Output: false
+// Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+//
+// Constraints:
+//
+// -231 <= x <= 231 - 1
+//
+//
+// Follow up: Could you solve it without converting the integer to a string?
+
+bool isPalindrome(int x)
+{
+    // In reality a string is an array of characters that can de decoded and encoded
+    // while a number or literal is an signal character that can be decoded
+    // the only thing a I can thing of is a math trick or formula to decern if
+    // the number is a palindrome: subtracting 101 until both ends are zero then
+    // checking if 000-90 or the modulus of 101
+
+    // Base Case: first three digit number [100]
+    // exclude negative numbers and digits less than 100
+    if (x <= 0 or x <= 99)
+    {
+        return false;
+    }
+
+    // convert to string array
+    string str_x = to_string(x);
+    // two pointer approach: int
+    int p1 = 0;
+    int p2 = str_x.length() - 1;
+
+    if (str_x[p1] == str_x[p2])
+    {
+        // return true;
+    }
+    else
+    {
+        // return false;
+    }
+
+    // two pointer approach: iterator
+    string::iterator sp1 = str_x.begin();
+    string::reverse_iterator sp2 = str_x.rbegin();
+
+    if (*sp1 == *sp2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 int main(void)
 {
     vector<string> cars = {"Volvo", "BMW", "Ford", "Mazda"};
     vector<int> nums = {3, 2, 2, 3};
-    removeElement(nums, 3);
+    // removeElement(nums, 3);
+
+    int x = 121;
+    isPalindrome(x);
 }
