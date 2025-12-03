@@ -123,10 +123,21 @@ function split_strings(s) {
 // [10, 343445353, 3453445, 3453545353453] should return 3453455.
 
 function sumTwoSmallestNumbers(numbers) {
-  function lomuto_parition(numbers, low, high) {
+  // The partition works by moving the smallest values
+  // relative to the pivot element to the left and 
+  // the largest values to the right 
+
+  // The pivot to base the partition on can be 
+  // the first, last, median, or a random element
+  function lomuto_partition(numbers, low, high) {
+    // the last element and pivot
     let p = numbers[high];
+    // the second to last element
     let i = low - 1;
 
+    // traverse the arr[low..high] and move all smaller
+    // elements to the left side, elements from low to
+    // i are smaller after every iteration
     for (let j = low; j <= high - 1; j++) {
       if (numbers[j] < p) {
         i++;
@@ -134,6 +145,8 @@ function sumTwoSmallestNumbers(numbers) {
         [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
       }
     }
+    // move pivot from last element after smaller elements and
+    // return its position
     // swap(numbers, i + 1, high);
     [numbers[i + 1], numbers[high]] = [numbers[high], numbers[i + 1]];
     return i + 1;
@@ -144,22 +157,15 @@ function sumTwoSmallestNumbers(numbers) {
     numbers[i] = numbers[j];
     numbers[j] = temp;
   }
-
-  function quick_sort(numbers, low, high) {
-    if (low < high) {
-      let par = lomuto_parition(numbers, low, high);
-
-      quick_sort(numbers, low, par - 1);
-      quick_sort(numbers, par + 1, high);
-    }
-  }
-  function naive_partition(numbers) {
+  function naive_partition(numbers, low, high) {
+    // let last = numbers.length;
     let last = numbers.length;
 
-    let par = numbers[last - 1];
+    let par = numbers[high];
     // let copy_arr = new Array(n);
     let copy_arr = [];
-    let indx = 0;
+    // let indx = 0;
+    let indx = low;
 
     for (let i = 0; i < last; i++) {
       if (numbers[i] <= par) {
@@ -173,16 +179,45 @@ function sumTwoSmallestNumbers(numbers) {
       }
     }
 
-    for (let i = 0; i <= last; i++) {
-      if (numbers[i] <= par) {
-        numbers[i] = copy_arr[i];
-      }
+    for (let i = 0; i < last; i++) {
+      numbers[i] = copy_arr[i];
+    }
+    return high;
+  }
+  // TODO: debug and learn and review other partitions
+  function hoarse_partition(numbers, low, high) {
+    let pivot = numbers[0];
+    let last = high;
+    let i = low - 1,
+      j = last;
+
+    while (true) {
+      do {
+        i++;
+      } while (numbers[i] < pivot);
+
+      do {
+        j--;
+      } while (numbers[j] > pivot);
+
+      if (i > j) break;
+
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+    return high;
+  }
+
+  function quick_sort(numbers, low, high) {
+    if (low < high) {
+      let par = hoarse_parition(numbers, low, high);
+      quick_sort(numbers, low, par - 1);
+      quick_sort(numbers, par + 1, high);
     }
   }
   // numbers.sort((a, b) => { return a - b })
-  // quick_sort(numbers, 0, numbers.length - 1);
-  naive_partition(numbers);
-  return number[0] + number[1];
+  quick_sort(numbers, 0, numbers.length - 1);
+  // naive_partition(numbers);
+  return numbers[0] + numbers[1];
 }
 
 sumTwoSmallestNumbers([19, 5, 42, 2, 77]);

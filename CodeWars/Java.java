@@ -1,6 +1,5 @@
 package CodeWars;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -34,6 +33,7 @@ public class Java {
     // {'X', 10},
     // {'V', 5},
     // {'I', 1},
+            
     public static String roman_numerals(int num) {
         StringBuilder result = new StringBuilder();
         LinkedHashMap<Integer, String> roman_table = new LinkedHashMap<Integer, String>();
@@ -101,7 +101,7 @@ public class Java {
     // [10, 343445353, 3453445, 3453545353453] should return 3453455.
 
     public static int sumTwoSmallestNumbers(int[] numbers) {
-        // Insertion Algorithm
+        // Insertion Sort Algorithm
         for (int i = 1; i < numbers.length; i++) {
             int k = numbers[i];
             int j = i - 1;

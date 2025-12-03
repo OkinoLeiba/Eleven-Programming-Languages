@@ -30,8 +30,8 @@ class Ruby
   # {'X', 10},
   # {'V', 5},
   # {'I', 1},
-
-  # sig{params:(num: Integer).return(String)}
+  # TODO: debug all 
+  sig{params:(num: Integer).return(String)}
   def roman_numerals(num)
     result = String.new
     roman_table = Hash.new(
@@ -61,6 +61,39 @@ class Ruby
     end
     return result
   end
+
+
+
+  # roman_numerals(16)
+
+  # Complete the solution so that it splits the string into pairs of two characters.
+  # If the string contains an odd number of characters then it should replace the missing
+  # second character of the final pair with an underscore ('_').
+  #
+  # Examples:
+  #
+  #  'abc' =>  ['ab', 'c_']
+  #  'abcdef' => ['ab', 'cd', 'ef']
+
+  sig{params:(str: String).return(Array[String])}
+  def split_strings(str) 
+    result = Array.new
+    for i in 0..str.length
+      result.push(str.slice(i,2).ljust(2, "_"))
+    end
+  end
+
+
+# Create  function that returns the sum of the two lowest positive
+# numbers given an array of minimum 4 positive integers.
+# No floats or non - positive integers will be passed.
+# For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+# [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+sig{params:(numbers: Array[Integer]).return(Integer)}
+def sumTwoSmallestNumbers(numbers)
+  numbers.sort!
+  return numbers[0] + numbers[1]
 
 end
 

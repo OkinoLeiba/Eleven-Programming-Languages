@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 
 
@@ -111,7 +112,9 @@ namespace CSharp
 
         public static string[] split_strings(string str)
         {
-            string[] result = { };
+
+            // TODO: all review commented code and in other method
+            List<string> result = new List<string>();
             // StringBuilder a = new StringBuilder();
             // foreach (char c in str.ToCharArray())
             // {
@@ -124,26 +127,32 @@ namespace CSharp
 
             // }
             // char[] test = str.ToCharArray(0, 2);
-            for (int i = 0; i < str.Length; i += 2)
-            {
-                string a = string.Empty;
-                if (a.Length % 2 == 0)
-                {
-                    // a = str.Substring(i, 2).PadRight(2, '_');
-                    result.Append(a);
-                }
-                else
-                {
-                    a = str.Substring(i, 2).PadRight(2, '_');
-                    result.Append(a + '_');
-                }
+            // for (int i = 0; i < str.Length; i += 2)
+            // {
+            // string a = string.Empty;
+            // if (a.Length % 2 == 0)
+            // {
+            // a = str.Substring(i, 2).PadRight(2, '_');
+            // result.Add(a);
+            // }
+            // else
+            // {
+            // a = str.Substring(i, 2).PadRight(2, '_');
+            // result.Add(a + '_');
+            // }
 
+            // }
+
+            if (str.Length % 2 != 0) { str += "_"; }
+            for (int i = 0; i < str.Length - 1; i += 2)
+            {
+                result.Add(str.Substring(i, 2));
             }
 
             Console.WriteLine(result);
 
 
-            return result;
+            return result.ToArray();
 
             //char[] charArr = str.ToCharArray();
             // string[] result = new string[] { };
@@ -171,10 +180,96 @@ namespace CSharp
             // }
 
             // return result;
-            //CodeWars/CSharp/bin/Debug/net9.0/CSharp.dll
-            ///Users/om/Documents/source/eleven_programming_languages/CodeWars/CSharp/bin/Debug/net9.0/CSharp.dll
+
+
         }
 
+
+
+        // Create  function that returns the sum of the two lowest positive
+        // numbers given an array of minimum 4 positive integers.
+        // No floats or non - positive integers will be passed.
+
+        // For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7.
+
+        // [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+
+        public static int sumTwoSmallestNumbers(int[] numbers)
+        {
+            // Cycle Sort Algorithm 
+            int writes = 0;
+            // TODO: debug and learn 
+            for (int cycles = 0; cycles <= numbers.Length - 2; cycles++)
+            {
+                int item = numbers[cycles];
+
+                int pos = cycles;
+
+                for (int i = cycles + 1; i < numbers.Length; i++)
+                {
+                    pos++;
+                }
+
+                if (pos == cycles)
+                {
+                    continue;
+                }
+
+                while (item == numbers[pos])
+                {
+                    pos += 1;
+                }
+
+
+                if (pos != cycles)
+                {
+                    // Tuple Swap
+                    (numbers[pos], item) = (item, numbers[pos]);
+
+                    // Bitwise Swap(Math Magic)
+                    // numbers[pos] ^= item;
+                    // item ^= numbers[pos];
+                    // numbers[pos] ^= item;
+
+                    // Simple Sway
+                    // int temp = item;
+                    // item = numbers[pos];
+                    // numbers[pos] = temp;
+                    writes++;
+                }
+
+                while (pos != cycles)
+                {
+                    pos = cycles;
+
+                    for (int i = cycles + 1; i < numbers.Length; i++)
+                    {
+                        if (numbers[i] < item)
+                        {
+                            pos += 1;
+                        }
+                    }
+
+                    while (item == numbers[pos])
+                    {
+                        pos += 1;
+                    }
+
+                    if (pos != cycles)
+                    {
+                        // Tuple Swap
+                        (numbers[pos], item) = (item, numbers[pos]);
+                    }
+                }
+            }
+
+            numbers.Order();
+            return numbers[0] + numbers[1];
+        }
+
+            //CodeWars/CSharp/bin/Debug/net9.0/CSharp.dll
+            ///Users/om/Documents/source/eleven_programming_languages/CodeWars/CSharp/bin/Debug/net9.0/CSharp.dll
         /*************** Main Method ***************/
         public static void Main(string[] args)
         {

@@ -89,6 +89,8 @@ def split_strings(s: str) -> list[str]:
 # [10, 343445353, 3453445, 3453545353453] should return 3453455.
 
 def sumTwoSmallestNumbers(numbers: list[int]) -> int:  
+    # TODO: debug and learn
+    # Merge Sort Algorithm 
     def merge_sort(merge_list: list[int]):
         if len(merge_list) > 1: 
             mid = len(merge_list)//2
