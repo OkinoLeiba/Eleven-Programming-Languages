@@ -81,12 +81,21 @@ std::vector<std::string> split_strings(const std::string &s)
     // }
     // result.push_back(a);
     // }
-
     s.size() % 2 == 0 ? s : s + '_';
-    for (int i = 0; i < s.size(); i += 2)
+    std::string pb;
+    for (const auto &sub : s)
     {
-        result.push_back(s.substr(i, 2));
+        pb.push_back(sub);
+        if (pb.size() == 2)
+        {
+            result.push_back(pb);
+            pb.erase(0, 2);
+        }
     }
+    // for (int i = 0; i < s.size(); i += 2)
+    // {
+    // result.push_back(s.substr(i, 2));
+    // }
 
     return result;
 }

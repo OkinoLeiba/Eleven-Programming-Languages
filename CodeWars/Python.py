@@ -55,14 +55,14 @@ def roman_numerals(number: int) -> str:
 
 def split_strings(s: str) -> list[str]:
     # Simple loop with slice (current approach, works)
-    result: list[str] = []
-    for i in range(0, len(s), 2):
-        a: str = s[i:i+2]
-        if len(a) % 2 == 0:
-            result.append(a)
-        else:
-            result.append(a+'_')
-        
+    # result: list[str] = []
+    # for i in range(0, len(s), 2):
+        # a: str = s[i:i+2]
+        # if len(a) % 2 == 0:
+            # result.append(a)
+        # else:
+            # result.append(a+'_')
+        # 
     #  return result
     
     # List comprehension + conditional
