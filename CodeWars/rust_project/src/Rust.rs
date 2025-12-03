@@ -42,3 +42,18 @@ fn roman_numerals(num: i32) -> string {
     return result;
 }
 
+roman_numerals(1666);
+
+// Complete the solution so that it splits the string into pairs of two characters.
+// If the string contains an odd number of characters then it should replace the missing
+// second character of the final pair with an underscore ('_').
+//
+// Examples:
+//
+//  'abc' =>  ['ab', 'c_']
+//  'abcdef' => ['ab', 'cd', 'ef']
+
+fn split_strings(s: &str) -> [&str] {
+    
+}
+

@@ -48,6 +48,22 @@
       "reloadModules": true
     },
     {
+      "name": "PHP OpenScript+Xdebug 2 (Legacy)",
+      "type": "php",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "port": 0,
+      "runtimeArgs": [
+        "-dxdebug.remote_enable=yes",
+        "-dxdebug.remote_autostart=yes"
+      ],
+      "env": {
+        "XDEBUG_CONFIG": "remote_port=${port}"
+      }
+    },
+
+    {
       "name": "PHP Xdebug",
       "type": "php",
       "request": "launch",
